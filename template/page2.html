@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Fetch Assignment</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <a href="index.html"><img src="/static/css/logo.png" alt="Logo" class="logo"></a>
+            <h1 class="Fetch Assignment">Fetch Assignment</h1>
+        </header>
+        <div class="frame">
+            <div class="text-box">
+            <p>We were provided with the data of Receipt Scanned everyday for an App for 2021 and required to predict Monthly user count of 2022 </p>
+            </div>
+       
+        
+        <div class="predtext-box">
+            {{ prediction_text }}
+            
+           
+        <form action="{{ url_for('predict')}}"method="post" >
+        <div class="frame">
+<div class="text-box">            
+<div class="dropdown-frame">
+            <label for="months">Select a month for which the approximate Scanned Receipt is needed  :</label>
+            <select id="months" name="selected_month">
+                <option value="0_31_January">January</option>
+        <option value="32_59_February">February</option>
+        <option value="60_90_March">March</option>
+        <option value="91_120_April">April</option>
+        <option value="121_151_May">May</option>
+        <option value="152_181_June">June</option>
+        <option value="182_212_July">July</option>
+        <option value="213_242_August">August</option>
+        <option value="243_273_September">September</option>
+        <option value="274_303_October">October</option>
+        <option value="304_334_November">November</option>
+        <option value="335_365_December">December</option>
+            </select>
+            <button type="submit" class="btn btn-primary btn-block btn-large" onclick="$('#loading').show();">Predict </button>
+        </form>
+       
+    </div>
+    <div id="loading"  class="loading-container" style="display:none;"><img src="/static/loading_bar.gif" alt="" /></div>
+        <img src="{{ url_for('static', filename='graph.png') }}" >
+        <img src="{{ url_for('static', filename='fullgraph.png') }}" >
+        <div class="normaltext-box">
+            <h2>Model Overview</h2>
+        <p>
+            Our predictive model is powered by a specialized Long Short-Term Memory (LSTM) network, which excels at forecasting univariate time series data. After extensive experimentation with various models like ARIMA, Random Forest regressor, and Exponential Smoothing, we found that the LSTM network consistently yielded the lowest Root Mean Square Error (RMSE), making it the ideal choice for accurate predictions.
+        </p>
+        <h2>Training Details</h2>
+        <ul>
+            <li>Batch Size: 1</li>
+            <li>Epochs: 2000</li>
+            <li>LSTM Neurons: 4</li>
+            <li>Optimizer: Adam</li>
+            <li>Loss Function: Mean Squared Error (MSE)</li>
+        </ul>
+        <h2>Visualizing Predictions</h2>
+        <p>
+            On the left side of the screen, you'll find a comprehensive graph that showcases our predictions from 2021 until the selected month. This full view provides an overview of the entire forecasting period.
+        </p>
+        <h2>Zoomed-In Analysis</h2>
+        <p>
+            For a more detailed analysis, the right-side graph zooms in specifically on the requested month of 2022. This zoomed-in view allows you to closely examine the predicted data for that specific time frame.
+        </p>
+    </div>
+            </div>
+
+</div>
+        </div>
+</div>
+
+    </div>
+    
+</body>
+</html>
