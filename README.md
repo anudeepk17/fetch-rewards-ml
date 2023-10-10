@@ -93,5 +93,11 @@ This folder consists of ```ARIMA.ipynb``` which is the ipynb where I experimente
 
 This folder also consists of ```rfr.py, rfrValidation.py, predictor.py, modelSave.py``` which are concerned files for Random Forest Regressor. These consists of Random Forest Regressor written from scratch, the Validation file for producing plot. 
 
+### Design Decisions
+LSTM was chosen over both RFR and ARIMA plainly because of the better RMSE values obtained [.ipynb for details]. I was not able to infer with ARIMA although the training and validation accuracy was high. Similarly for RFR the out of sample predictions were parallel to the x-axis with some volatility. This could be due to multiple trees could be getting trained independently. I could not parallelize boosting as well. LSTM was the choice that not only learnt the linearity of the underlying urve but also the volatility. Also I was required to write an algorithm from scratch so it was the best choice to go forward with. 
+
+Design of the app has been restricted to just inference by loading a pre-trained model. This step was taken because, training an LSTM model for thousands of iterations takes a lot of time and from the standpoint of a user facing app it is inelegant for the user. The developers can go to the trainlstm.py and make the required changes, save the model and run the app with the newly saved model for quick inference. For real-time inference it is better to train the model during the downtime of the company for better usage of server resource of the company and in the morning for accurate and quick predictions. 
+
+
 
  
